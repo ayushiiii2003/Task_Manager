@@ -7,6 +7,7 @@ interface TaskItemProps {
 }
 
 function TaskItem({ task, onToggle, onDelete }: TaskItemProps) {
+  const priorityColor = task.priority === 'low' ? 'green' : task.priority === 'medium' ? 'orange' : 'red';
   return (
     <li className="task-item">
       <input
@@ -16,6 +17,9 @@ function TaskItem({ task, onToggle, onDelete }: TaskItemProps) {
       />
       <span className={task.completed ? 'task-title completed' : 'task-title'}>
         {task.title}
+      </span>
+      <span style={{ color: priorityColor, marginLeft: '10px' }}>
+        {task.priority}
       </span>
       <button className="delete-btn" onClick={() => onDelete(task.id)}>
         Delete
